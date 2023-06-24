@@ -1,8 +1,8 @@
 const Player = (name, marker) => {
     
-    const play = index => {
-        gameBoard.board[index] = marker; 
-    }
+    // const play = index => {
+    //     gameBoard.board[index] = marker; 
+    // }
 
     return {name, marker, play}
 };
@@ -10,22 +10,27 @@ const Player = (name, marker) => {
 
 const gameBoard = (() => {
 
-    const board = ["", "", "","","","","","",""]; 
+    let board = ["", "", "","","","","","",""]; 
     const boxes = document.querySelectorAll('.box');
     const startButton = document.querySelector("#start");
-
-    const player1 = Player("player1", "X");
-    const player2 = Player("player2", "O");
-    let currentPlayer = player1;
-
-    let win = false; 
-
+    const restartButton = document.querySelector('#restart');
+    let win; 
+    let currentPlayer;
+  
     const init = () => {
+        const player1 = Player("player1", "X");
+        const player2 = Player("player2", "O");
+        currentPlayer = player1;
+        win = false;
+
         for(let i=0; i<boxes.length; i++) {
+            
             boxes[i].addEventListener("click", () => {
-                if(boxes[i].textContent === ""){
+                
+                if(board[i] === ""){
                     if(!win) {
-                        currentPlayer.play(i);
+                        // currentPlayer.play(i);
+                        board[i] = currentPlayer.marker;
                         boxes[i].textContent = board[i];
                         // console.log(i);
                         console.log(board[i]);
@@ -40,6 +45,7 @@ const gameBoard = (() => {
                             winnerDiv.textContent = (winner === "X"? player1.name : player2.name) + " Wins!"; 
                             document.body.appendChild(winnerDiv);
                             win = true;
+                            restartButton.style = "display: inline;";
                         }
                         else if(winner===undefined && !board.includes("")) {
                             const winnerDiv = document.createElement('div');
@@ -47,12 +53,13 @@ const gameBoard = (() => {
                             winnerDiv.textContent = "Tie!";
                             document.body.appendChild(winnerDiv); 
                             win = true; 
+                            restartButton.style = "display: inline;";
                         }
                     }
                    
                 }
                 
-            }), {once: true};
+            });
         }
     }
 
@@ -73,9 +80,20 @@ const gameBoard = (() => {
         return winner; 
     }
 
-    startButton.addEventListener("click", init);
-    
+    const reset = () => {
+        board = ["", "", "","","","","","",""];
+        win = false;
+        boxes.forEach(box => {
+            box.textContent = ""
+            box.removeEventListener("click", function(){});
+        });
+        // init();
+    }
+    startButton.addEventListener("click", init), {once:true};
+    restartButton.addEventListener("click", reset);
+
 return {board};
+
 })();
 
 const displayController = (() => {
