@@ -2,8 +2,6 @@ const Player = (name, marker) => {
     
     const play = index => {
         gameBoard.board[index] = marker; 
-        // console.log(gameBoard.board[index]);
-
     }
 
     return {name, marker, play}
@@ -23,7 +21,6 @@ const gameBoard = (() => {
     let win = false; 
 
     const init = () => {
-        
         for(let i=0; i<boxes.length; i++) {
             boxes[i].addEventListener("click", () => {
                 if(boxes[i].textContent === ""){
@@ -36,13 +33,20 @@ const gameBoard = (() => {
 
 
                         let winner = checkWinner();
-                        // console.log(winner);
+
                         if(winner !== undefined && winner != "") {
                             const winnerDiv = document.createElement('div');
                             winnerDiv.id = "winner"; 
                             winnerDiv.textContent = (winner === "X"? player1.name : player2.name) + " Wins!"; 
                             document.body.appendChild(winnerDiv);
                             win = true;
+                        }
+                        else if(winner===undefined && !board.includes("")) {
+                            const winnerDiv = document.createElement('div');
+                            winnerDiv.id = "winner"; 
+                            winnerDiv.textContent = "Tie!";
+                            document.body.appendChild(winnerDiv); 
+                            win = true; 
                         }
                     }
                    
@@ -77,6 +81,3 @@ return {board};
 const displayController = (() => {
 
 })();
-
-
-// gameBoard.render();
