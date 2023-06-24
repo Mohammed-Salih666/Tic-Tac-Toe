@@ -1,51 +1,56 @@
+const Player = (name, marker) => {
+    
+    return {name, marker}
+};
+
+
+
 
 const gameBoard = (() => {
-    const board = ['x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x']; 
-    let currentPlayer;
+    const board = ["", "", "","","","","","",""]; 
+    const boxes = document.querySelectorAll('.box');
+    const startButton = document.querySelector("#start");
 
-
-    const render = () => {
-        let container = document.createElement('div');
-        container.className = "container";
-        document.body.appendChild(container); 
-
-
-        for(let i = 0; i<board.length; i++)  {
-            let box = document.createElement('div'); 
-            box.id = `box${i}`;
-            box.textContent = board[i]; 
-
-            box.addEventListener("click", () => play(i)), {once: true};
-        
-            container.appendChild(box);
+    const init = () => {
+        for(let i=0; i<boxes.length; i++) {
+            boxes[i].addEventListener("click", () => {
+                if(boxes[i].textContent === ""){
+                    play(i);
+                    console.log(i);
+                }
+                
+            }), {once: true};
         }
+    }
 
-    }; 
 
+    startButton.addEventListener("click", init);
+    
+    const player1 = Player("player1", "X");
+    const player2 = Player("player2", "O");
+    let currentPlayer = player1;
 
     const play = (index) => {
-        const player1 = Player("player1", "O"); 
-        const player2 = Player("player2", "X"); 
-        currentPlayer = player1;
-        board[index] = currentPlayer.marker; 
 
-        currentPlayer = player2; 
-        
+        board[index] = currentPlayer.marker; 
+        boxes[index].textContent = currentPlayer.marker;
+
+
+        player1 == currentPlayer ? currentPlayer = player2
+        : currentPlayer = player1;
+
+       
     };
 
 
-return {render};
+return {};
 })();
 
 const displayController = (() => {
 
 })();
 
-const Player = (name, marker) => {
-    
-    return {name, marker}
-};
 
-gameBoard.render();
+// gameBoard.render();
 
 
