@@ -7,15 +7,14 @@ const gameBoard = (() => {
 
     let board = ["", "", "","","","","","",""]; 
     const boxes = document.querySelectorAll('.box');
-    const startButton = document.querySelector("#start");
-    const restartButton = document.querySelector('#restart');
     const winnerDiv = document.querySelector("#winnerDiv");
     let win; 
     let currentPlayer;
   
     const init = () => {
-        const player1 = Player("player1", "X");
-        const player2 = Player("player2", "O");
+        const names = document.querySelectorAll('input');
+        let player1 = Player(names[0].value, "X");
+        let player2 = Player(names[1].value, "O");
         currentPlayer = player1;
         win = false;
 
@@ -71,13 +70,20 @@ const gameBoard = (() => {
         boxes.forEach(box => box.textContent = "");
         winnerDiv.textContent = "";
     }
-    startButton.addEventListener("click", init), {once:true};
-    restartButton.addEventListener("click", reset);
 
-return {board};
-
+    return {init, reset}
 })();
 
 const displayController = (() => {
 
 })();
+
+const startButton = document.querySelector("#start");
+startButton.addEventListener("click", () => 
+{
+    gameBoard.init(); 
+    startButton.style = "display: none";
+}), {once:true};
+
+const restartButton = document.querySelector('#restart');
+restartButton.addEventListener("click", gameBoard.reset);
