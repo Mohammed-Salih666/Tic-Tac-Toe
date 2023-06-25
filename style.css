@@ -4,17 +4,19 @@ body {
     justify-content:center;
     flex-direction: column;
     height: 100vh;
-    gap: 5%;
+    gap: 3%;
 
     font-family:monospace;
     font-size: 1rem;
+
+    /* background-color: aliceblue; */
 }
 
 .container {
     display: inline-grid; 
     grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr;
-    width: 25vw; 
-    height: 25vw;
+    width: max(30vw, 350px); 
+    height: max(30vw, 350px);
 }
 .container > div { 
     border: 1px black dashed;
@@ -30,9 +32,18 @@ body {
 }
 .buttons-div > button { 
     width: 15rem;
-    height: 5rem;
+    height: 3rem;
+    font: inherit;
+    color: white;
+    background-color: rgb(76, 248, 76);
+    text-shadow: 1px 1px 2px black;
+    font-weight: bold;
+    border: none;
+    border-radius: 15px;
 }
-
+.buttons-div > button:hover {
+    background-color: rgb(102, 252, 102);
+}
 #winnerDiv {
     font-size: 3rem;
 }
@@ -46,5 +57,5 @@ body {
 }
 
 #players-info input[type="text"] {
-    height: 150%;
+    height: 100%;
 }

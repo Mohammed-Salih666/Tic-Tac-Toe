@@ -13,8 +13,8 @@ const gameBoard = (() => {
   
     const init = () => {
         const names = document.querySelectorAll('input');
-        let player1 = Player(names[0].value, "X");
-        let player2 = Player(names[1].value, "O");
+        const player1 = Player(names[0].value, "X");
+        const player2 = Player(names[1].value, "O");
         currentPlayer = player1;
         win = false;
 
