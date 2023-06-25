@@ -1,0 +1,50 @@
+body {
+    display: flex; 
+    align-items: center;
+    justify-content:center;
+    flex-direction: column;
+    height: 100vh;
+    gap: 5%;
+
+    font-family:monospace;
+    font-size: 1rem;
+}
+
+.container {
+    display: inline-grid; 
+    grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr;
+    width: 25vw; 
+    height: 25vw;
+}
+.container > div { 
+    border: 1px black dashed;
+    display: flex; 
+    justify-content: center;
+    align-items: center; 
+    font-size: 3rem;
+}
+
+.buttons-div {
+    display:flex; 
+    gap: 10px;
+}
+.buttons-div > button { 
+    width: 15rem;
+    height: 5rem;
+}
+
+#winnerDiv {
+    font-size: 3rem;
+}
+
+#players-info {
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+}
+
+#players-info input[type="text"] {
+    height: 150%;
+}
