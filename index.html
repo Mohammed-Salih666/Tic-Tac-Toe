@@ -7,7 +7,24 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <button type="button" id="start">Start Game</button>
+    <div id="players-info">
+        <div>
+            <label for="player1">Player 1 Name (marker: X) </label>
+            <input type="text" name="player1" id="player1">
+        </div>
+
+        <div>
+            <label for="player2">Player 2 Name (marker: O)</label>
+            <input type="text" name="player2" id="player2">
+        </div>
+
+    </div>
+
+    <div class="buttons-div">
+        <button type="button" id="start">Start Game</button>
+        <button type="button" id="restart" style="display: none;">Restart</button>
+    </div>
+
     <div class="container">
         <div class="box"></div>
         <div class="box"></div>
@@ -19,7 +36,10 @@
         <div class="box"></div>
         <div class="box"></div>
     </div>
-    
+
+   
+
+    <div id="winnerDiv"></div>
 
     <script src="script.js"></script>
 </body>
